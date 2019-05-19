@@ -19,7 +19,7 @@
 			"file": "main.c",
 			"settings":
 			{
-				"buffer_size": 738,
+				"buffer_size": 739,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -172,23 +172,24 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 738,
+						"buffer_size": 739,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								477,
-								477
+								739,
+								739
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C.sublime-syntax"
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 408.0,
+						"translation.y": 378.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -214,7 +215,8 @@
 						"settings":
 						{
 							"auto_name": "// sha256Funcs.c",
-							"syntax": "Packages/C++/C.sublime-syntax"
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -243,7 +245,8 @@
 						"settings":
 						{
 							"auto_name": "sha256const.c",
-							"syntax": "Packages/C++/C.sublime-syntax"
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 55.0,
@@ -271,8 +274,8 @@
 						"selection":
 						[
 							[
-								408,
-								408
+								260,
+								260
 							]
 						],
 						"settings":
@@ -365,7 +368,7 @@
 	{
 		"height": 0.0
 	},
-	"pinned_build_system": "Packages/C++/C OWL Build.sublime-build",
+	"pinned_build_system": "Packages/C++/C Single File.sublime-build",
 	"project": "csha256.sublime-project",
 	"replace":
 	{
