@@ -8,7 +8,6 @@
 // Message block is 512 bit, 16 x 32bit words
 // Message block is 64 8-bit characters
 
-// TODO read input from file
 
 
 
@@ -44,41 +43,36 @@ unsigned int getfilesize(FILE *fp) {
 
 
 
-
-
-
 int main(int argc, char const *argv[])
 {
 
+	// Load file
 	FILE *fp;
 
 	char filename[25] = "testlonger.txt";
 	char messagebuffer[BLOCKSIZE_BYTE];
 	char unsigned *messagebuffer2;
-	size_t mlength;
 	unsigned int filesize;
 
 	fp = fopen(filename, "r");
 	filesize = getfilesize(fp); // length in bytes.
-
-	int mbitsize = filesize*8;
-
-
 	messagebuffer2 = (char *) malloc(filesize);
 	fread(messagebuffer2, 1, filesize, fp);
-
-
-	printf("%s\n\n", messagebuffer2);
-
-	printf("File bitsize %d\n", filesize*8);
-	printf("Old size (bytes): %u\n", filesize);
-	messagebuffer2 = padmessage(messagebuffer2, filesize);
-
-
 	fseek(fp, 0L, SEEK_SET);
 
-	printf("filesize: %d\n", filesize);
+	// Pad message
+	messagebuffer2 = padmessage(messagebuffer2, filesize);
+	if (messagebuffer2==NULL) {
+		return MEMORYERROR;
+	}
 
+	//Initial hash value
+	unsigned char H[64];
+	memcpy(H, H0, 64);
+	charprint(H, 64);
+	
+
+	// Clean up
 	fclose(fp);
 	free(messagebuffer2);
 
