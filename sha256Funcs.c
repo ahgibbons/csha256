@@ -91,7 +91,6 @@ uint32_t *padmessage(uint32_t *mbuf, unsigned int mlen) {
 		lentrack++;
 	}
 
-	charprint(mbuf, lentrack);
 
 
 	return mbuf;

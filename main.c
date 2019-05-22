@@ -73,7 +73,7 @@ int main(int argc, char const *argv[])
 	uint32_t a,b,c,d,e,f,g,h;
 	uint32_t T1,T2;
 	unsigned int messageIndex = 0;
-	uint32_t W[64];
+	uint32_t W[16];
 
 	uint32_t H[8];
 	memcpy(H, H0, 32);
@@ -97,9 +97,7 @@ int main(int argc, char const *argv[])
 
 
 	//Initial hash value
-	
-	//charprint(H, 64);
-	
+
 
 	// Clean up
 	fclose(fp);

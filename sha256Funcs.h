@@ -16,8 +16,7 @@ uint32_t LSigma0(uint32_t x);
 uint32_t LSigma1(uint32_t x);
 uint32_t sigma0(uint32_t x);
 uint32_t sigma1(uint32_t x);
-unsigned char *padmessage(unsigned char *mbuf, unsigned int mlen);
+uint32_t *padmessage(uint32_t *mbuf, unsigned int mlen);
 unsigned int mod(unsigned int a, unsigned int d);
-void charprint(char *mbuf, int n);
 
 #endif
