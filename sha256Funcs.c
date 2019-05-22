@@ -51,15 +51,8 @@ unsigned int mod(unsigned int a, unsigned int d) {
 	return a % d;
 };
 
-void charprint(char *mbuf, int n) {
-	for (int i=0;i<n;i++) {
-		printf("%c", mbuf[i]);
-	}
-	printf("\n");
-};
 
-
-unsigned char *padmessage(unsigned char *mbuf, unsigned int mlen) {
+uint32_t *padmessage(uint32_t *mbuf, unsigned int mlen) {
 	unsigned long bitsize = mlen * 8; // bytes to bits
 	unsigned int nzerobits = mod(ZEROPADNUM - bitsize -1, BLOCKSIZE_BIT);
 	unsigned int nzerobytes = (nzerobits-7) / 8;
@@ -100,7 +93,6 @@ unsigned char *padmessage(unsigned char *mbuf, unsigned int mlen) {
 
 	charprint(mbuf, lentrack);
 
-	printf("char 24: %u\n", mbuf[lentrack-1]);
 
 	return mbuf;
 };

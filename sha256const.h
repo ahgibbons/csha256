@@ -7,6 +7,7 @@
 #define WORDSIZE 32 // w = 32
 #define BLOCKNUM 16 // words
 #define MEMORYERROR -1
+#define MESSAGESCHEDULE 64
 
 #include <stdint.h>
 

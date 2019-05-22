@@ -40,63 +40,64 @@ unsigned int getfilesize(FILE *fp) {
 	return filesize;
 };
 
-size_t readchunk(char *chunkbuffer, int chunksize, FILE *fp) {
-	size_t readsize;
-
-	readsize = fread(chunkbuffer, 1, chunksize, fp);
-
-	printf("%zu\n", readsize);
-
-	return readsize;
-}
-
 
 int main(int argc, char const *argv[])
 {
 
 	
 
-	char filename[25] = "testlonger.txt";
+	char filename[25] = "test.txt";
 	char messagebuffer[BLOCKSIZE_BYTE];
 	char unsigned *messagebuffer2;
 	unsigned int filesize;
+	
 
 
 	// Open file
-	FILE *fp;
-	fp = fopen(filename, "r");
+	FILE *fp = fopen(filename, "r");
 	filesize = getfilesize(fp); // length in bytes.
 	messagebuffer2 = (char *) malloc(filesize);
 	fread(messagebuffer2, 1, filesize, fp);
 	fseek(fp, 0L, SEEK_SET);
 
+
+	// Process chunk by chunk
 	int chunksize;
-	unsigned char *chunkbuffer = (char *) malloc(BLOCKSIZE_BYTE);
-	
-	chunksize = 64;
-	fread(chunkbuffer, 1, 64, fp);
-	for (int i=0;i<chunksize;i++) {
-		printf("%c", chunkbuffer[i]);
-	}
-	printf("\n");
+	uint32_t *chunkbuffer = malloc(BLOCKSIZE_BYTE);
+	chunksize = BLOCKSIZE_BYTE;
+	size_t readval;
+	int i;
 
-	readchunk(chunkbuffer, 64, fp);
-	for (int i=0;i<chunksize;i++) {
-		printf("%c", chunkbuffer[i]);
-	}
-	printf("\n");
+	// Hashing Variables
 
-	readchunk(chunkbuffer, 64, fp);
-	for (int i=0;i<chunksize;i++) {
-		printf("%c", chunkbuffer[i]);
-	}
-	printf("\n");
+	uint32_t a,b,c,d,e,f,g,h;
+	uint32_t T1,T2;
+	unsigned int messageIndex = 0;
+	uint32_t W[64];
 
+	uint32_t H[8];
+	memcpy(H, H0, 32);
+
+	unsigned int t;
+	while ((readval=fread(chunkbuffer,1,chunksize,fp))>0) {
+		messageIndex++;
+		// Initialise message schedule (W)
+		for (t=0;t<MESSAGESCHEDULE;t++) {
+			W[t] = chunkbuffer[t];
+		}
+		printf("Message Index: %u\n", messageIndex);
+		if (readval < BLOCKSIZE_BYTE) {
+			chunkbuffer = padmessage(chunkbuffer, readval);
+		}
+
+		for (i=0;i<readval;i++) {
+			printf("%c", chunkbuffer[i]);
+		}
+	}
 
 
 	//Initial hash value
-	unsigned char H[64];
-	memcpy(H, H0, 64);
+	
 	//charprint(H, 64);
 	
 
