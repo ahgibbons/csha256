@@ -4,12 +4,16 @@
 		"selected_items":
 		[
 			[
-				"u",
-				"uint32_t"
+				"mess",
+				"messagelength"
 			],
 			[
-				"mess",
-				"messageIndex"
+				"message",
+				"messagelength"
+			],
+			[
+				"u",
+				"uint32_t"
 			],
 			[
 				"read",
@@ -76,10 +80,6 @@
 				"printchars"
 			],
 			[
-				"message",
-				"messagebuffer2"
-			],
-			[
 				"SEEK",
 				"SEEK_SET"
 			],
@@ -100,12 +100,24 @@
 	"buffers":
 	[
 		{
-			"file": "main.c",
+			"file": "/home/andrewsim/cprojects/main.c",
 			"settings":
 			{
-				"buffer_size": 1876,
+				"buffer_size": 2053,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n\t\"shell_cmd\": \"gcc \\\"${file}\\\" -o \\\"${file_path}/${file_base_name}\\\"\",\n\t\"file_regex\": \"^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$\",\n\t\"working_dir\": \"${file_path}\",\n\t\"selector\": \"source.c\",\n\n\t\"variants\":\n\t[\n\t\t{\n\t\t\t\"name\": \"Run\",\n\t\t\t\"shell_cmd\": \"gcc \\\"${file}\\\" -o \\\"${file_path}/${file_base_name}\\\" && \\\"${file_path}/${file_base_name}\\\"\"\n\t\t}\n\t]\n}\n",
+			"file": "/home/andrewsim/.config/sublime-text-3/Packages/C++/C Single File.sublime-build",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 345,
+				"line_ending": "Unix",
+				"scratch": true
 			}
 		},
 		{
@@ -129,10 +141,10 @@
 			}
 		},
 		{
-			"file": "sha256Funcs.c",
+			"file": "/home/andrewsim/cprojects/sha256Funcs.c",
 			"settings":
 			{
-				"buffer_size": 1845,
+				"buffer_size": 1715,
 				"encoding": "UTF-8",
 				"line_ending": "Unix",
 				"name": "// sha256Funcs.c"
@@ -209,6 +221,10 @@
 		"selected_items":
 		[
 			[
+				"psv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
 				"prv",
 				"PackageResourceViewer: Open Resource"
 			],
@@ -241,7 +257,7 @@
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
@@ -255,6 +271,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"bitsize",
 			"charpr"
 		],
 		"highlight": true,
@@ -273,24 +290,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "main.c",
+					"file": "/home/andrewsim/cprojects/main.c",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1876,
+						"buffer_size": 2053,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1464,
-								1464
+								77,
+								77
 							]
 						],
 						"settings":
@@ -299,10 +316,40 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/andrewsim/.config/sublime-text-3/Packages/C++/C Single File.sublime-build",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 345,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								345,
+								345
+							]
+						],
+						"settings":
+						{
+							"buffer_empty": false,
+							"create_dir": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -312,7 +359,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "sha256Funcs.h",
 					"semi_transient": false,
 					"settings":
@@ -324,42 +371,13 @@
 						"selection":
 						[
 							[
-								604,
-								604
+								343,
+								343
 							]
 						],
 						"settings":
 						{
 							"auto_name": "sha256Funcs.h",
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 108.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "sha256const.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 314,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								249,
-								249
-							]
-						],
-						"settings":
-						{
-							"auto_name": "sha256const.h",
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
@@ -371,19 +389,48 @@
 				},
 				{
 					"buffer": 3,
-					"file": "sha256Funcs.c",
+					"file": "sha256const.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1845,
+						"buffer_size": 314,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1491,
-								1491
+								92,
+								92
+							]
+						],
+						"settings":
+						{
+							"auto_name": "sha256const.h",
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/andrewsim/cprojects/sha256Funcs.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1715,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1260,
+								1260
 							]
 						],
 						"settings":
@@ -393,14 +440,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "sha256const.c",
 					"semi_transient": false,
 					"settings":
@@ -426,7 +473,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -512,7 +559,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},

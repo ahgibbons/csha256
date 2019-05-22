@@ -88,11 +88,14 @@ int main(int argc, char const *argv[])
 			printf("%c", chunkbuffer[i]);
 		}
 		// Initialise message schedule (W)
+		// Stash smash!!!!
 		for (t=0;t<MESSAGESCHEDULE;t++) {
-			W[t] = chunkbuffer[t];
+			printf("t val%d\n", t);
+			//W[t] = chunkbuffer[t];
 		}
 		printf("\nMessage Index: %u\n", messageIndex);
 		if (readval < BLOCKSIZE_BYTE) {
+			printf("Pad message\n");
 			chunkbuffer = padmessage(chunkbuffer, readval, 
 									messagelength);
 		}
@@ -103,11 +106,6 @@ int main(int argc, char const *argv[])
 	printf("Message length (bits) %d\n", messagelength*8);
 
 	//Initial hash value
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> alt_uint32
 
 	// Clean up
 	fclose(fp);
