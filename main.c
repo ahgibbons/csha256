@@ -46,8 +46,8 @@ int main(int argc, char const *argv[])
 
 	
 
-	char filename[25] = "test.txt";
-	char messagebuffer[BLOCKSIZE_BYTE];
+	//char filename[25] = "testlonger.txt";
+	char filename[25] = "test2.txt";
 	char unsigned *messagebuffer2;
 	unsigned int filesize;
 	
@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
 
 	// Process chunk by chunk
 	int chunksize;
-	uint32_t *chunkbuffer = malloc(BLOCKSIZE_BYTE);
+	unsigned char *chunkbuffer = malloc(BLOCKSIZE_BYTE);
 	chunksize = BLOCKSIZE_BYTE;
 	size_t readval;
 	int i;
@@ -78,26 +78,36 @@ int main(int argc, char const *argv[])
 	uint32_t H[8];
 	memcpy(H, H0, 32);
 
+
 	unsigned int t;
+	unsigned int messagelength=0;
 	while ((readval=fread(chunkbuffer,1,chunksize,fp))>0) {
 		messageIndex++;
+		messagelength += readval;
+		for (i=0;i<readval;i++) {
+			printf("%c", chunkbuffer[i]);
+		}
 		// Initialise message schedule (W)
 		for (t=0;t<MESSAGESCHEDULE;t++) {
 			W[t] = chunkbuffer[t];
 		}
-		printf("Message Index: %u\n", messageIndex);
+		printf("\nMessage Index: %u\n", messageIndex);
 		if (readval < BLOCKSIZE_BYTE) {
-			chunkbuffer = padmessage(chunkbuffer, readval);
+			chunkbuffer = padmessage(chunkbuffer, readval, 
+									messagelength);
 		}
 
-		for (i=0;i<readval;i++) {
-			printf("%c", chunkbuffer[i]);
-		}
+
 	}
-
+	printf("Message length %d\n", messagelength);
+	printf("Message length (bits) %d\n", messagelength*8);
 
 	//Initial hash value
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> alt_uint32
 
 	// Clean up
 	fclose(fp);

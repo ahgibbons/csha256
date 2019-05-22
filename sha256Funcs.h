@@ -16,7 +16,12 @@ uint32_t LSigma0(uint32_t x);
 uint32_t LSigma1(uint32_t x);
 uint32_t sigma0(uint32_t x);
 uint32_t sigma1(uint32_t x);
+<<<<<<< HEAD
 uint32_t *padmessage(uint32_t *mbuf, unsigned int mlen);
+=======
+unsigned char *padmessage(unsigned char *mbuf, unsigned int chsize,
+							unsigned int totallength);
+>>>>>>> alt_uint32
 unsigned int mod(unsigned int a, unsigned int d);
 
 #endif

@@ -52,29 +52,22 @@ unsigned int mod(unsigned int a, unsigned int d) {
 };
 
 
-uint32_t *padmessage(uint32_t *mbuf, unsigned int mlen) {
-	unsigned long bitsize = mlen * 8; // bytes to bits
+unsigned char *padmessage(unsigned char *mbuf,
+						  unsigned int chsize,
+						  unsigned int totallength) {
+	unsigned long bitsize = (totallength * 8); // bytes to bits
 	unsigned int nzerobits = mod(ZEROPADNUM - bitsize -1, BLOCKSIZE_BIT);
 	unsigned int nzerobytes = (nzerobits-7) / 8;
 
-	unsigned int newsize = ((bitsize+1)/BLOCKSIZE_BIT+1) * BLOCKSIZE_BIT;
-	unsigned int newsize_bytes = newsize/8;
 
-
-
-	mbuf = realloc(mbuf, sizeof(char)*newsize_bytes);
-	if (mbuf== NULL) {
-		return mbuf;
-	}
-
-	int lentrack = mlen;
+	int lentrack = chsize;
 
 	unsigned char onepad = ONEPAD;
-	mbuf[mlen] = onepad;
+	mbuf[chsize] = onepad;
 	lentrack++;
 
 	int nzeros;
-	unsigned int mpos=mlen+1; // Add zeros
+	unsigned int mpos=chsize+1; // Add zeros
 	for (nzeros=nzerobytes; nzeros>0; nzeros--) {
 		mbuf[mpos] = 0;
 		mpos++;
@@ -82,13 +75,12 @@ uint32_t *padmessage(uint32_t *mbuf, unsigned int mlen) {
 	}
 
 
+	// Add 8 byte bit length of message
 	int rshifter;
-	for (rshifter=7;rshifter>=0;rshifter--) {
+	for (rshifter=0;rshifter<8;rshifter++) {
 		unsigned char a = (bitsize >> (8*rshifter)) & 0xff;
-		mbuf[mpos] = a;
+		mbuf[BLOCKSIZE_BYTE-1-rshifter] = a;
 
-		mpos++;
-		lentrack++;
 	}
 
 
