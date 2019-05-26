@@ -1,4 +1,5 @@
 main
 sha256Funcs
 sha256const
+csha256.sublime-workspace
 *.pdf
