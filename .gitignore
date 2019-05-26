@@ -2,4 +2,6 @@ main
 sha256Funcs
 sha256const
 csha256.sublime-workspace
+C MultiBuild.sublime-build
+csha256.sublime-project
 *.pdf

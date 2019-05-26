@@ -1,16 +1,17 @@
-csha:	main.c sha256const.o sha256Funcs.o
-	gcc -o main main.c *.o
+csha:	src/main.c src/sha256const.o src/sha256Funcs.o
+	
+	gcc -o main src/main.c build/*.o
 
 debug: main.c 
 	gcc -g -o main *.c
 
-sha256const.o: sha256const.c
-	gcc -c sha256const.c
+src/sha256const.o: src/sha256const.c
+	gcc -o build/sha256const.o -c src/sha256const.c
 
-sha256Funcs.o: sha256Funcs.c
-	gcc -c sha256Funcs.c
+src/sha256Funcs.o: src/sha256Funcs.c
+	gcc -o build/sha256const.o -c src/sha256Funcs.c
 
 .PHONY: clean
 
 clean:
-	rm *.o
+	rm build/*.o
