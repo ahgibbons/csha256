@@ -10,3 +10,7 @@ sha256const.o: sha256const.c
 sha256Funcs.o: sha256Funcs.c
 	gcc -c sha256Funcs.c
 
+.PHONY: clean
+
+clean:
+	rm *.o

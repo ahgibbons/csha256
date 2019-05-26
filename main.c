@@ -5,16 +5,6 @@
 #include "sha256Funcs.h"
 #include "sha256const.h"
 
-#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
-#define BYTE_TO_BINARY(byte)  \
-  (byte & 0x80 ? '1' : '0'), \
-  (byte & 0x40 ? '1' : '0'), \
-  (byte & 0x20 ? '1' : '0'), \
-  (byte & 0x10 ? '1' : '0'), \
-  (byte & 0x08 ? '1' : '0'), \
-  (byte & 0x04 ? '1' : '0'), \
-  (byte & 0x02 ? '1' : '0'), \
-  (byte & 0x01 ? '1' : '0') 
 
 // Message block is 512 bit, 16 x 32bit words
 // Message block is 64 8-bit characters
@@ -37,15 +27,6 @@ size_t readfilechunks(char *mb, int chunksize, FILE *fp) {
 	} while (a != 0);
 	return len;
 };
-
-unsigned int getfilesize(FILE *fp) {
-	unsigned int filesize;
-	fseek(fp, 0L, SEEK_END);
-	filesize = ftell(fp);
-	fseek(fp, 0L, SEEK_SET);
-	return filesize;
-};
-
 
 void hashRound(uint32_t *wordbuffer, uint32_t *H) {
 
@@ -101,16 +82,10 @@ uint32_t *hashMessage(FILE *fp) {
 	unsigned char bytebuffer[BLOCKSIZE_BYTE];
 	uint32_t wordbuffer[BLOCKNUM]; 
 
-	
-
-
 	uint32_t *H;
 	H = malloc(32);
 	memcpy(H, H0, 32);
 
-
-	
-	unsigned int i;
 	unsigned int messagelength=0;
 	size_t readval;
 
@@ -150,7 +125,6 @@ int main(int argc, char const *argv[])
 
 	// Open file
 	FILE *fp = fopen(argv[1], "r");
-	filesize = getfilesize(fp); // length in bytes.
 
 	uint32_t *digest;
 	digest = hashMessage(fp);
