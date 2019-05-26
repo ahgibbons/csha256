@@ -168,7 +168,6 @@ uint32_t *hashMessage(FILE *fp) {
 
 int main(int argc, char const *argv[])
 {
-	char filename[25] = "test2.txt";
 	unsigned int filesize;
 	printf("%s\n", argv[1]);
 
@@ -180,9 +179,11 @@ int main(int argc, char const *argv[])
 	uint32_t *digest;
 	digest = hashMessage(fp);
 
-	for (int i=0; i<8; i++) {
-		printf("%08x\n", digest[i]);
-	}
+
+	printf("%08x %08x %08x %08x %08x %08x %08x %08x\n", 
+		digest[0], digest[1], digest[2], digest[3], digest[4],
+		digest[5], digest[6], digest[7]);
+
 
 	// Clean up
 	fclose(fp);
