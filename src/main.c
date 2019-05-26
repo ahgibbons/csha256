@@ -6,11 +6,6 @@
 #include "sha256const.h"
 
 
-// Message block is 512 bit, 16 x 32bit words
-// Message block is 64 8-bit characters
-
-// uint32_t is little endian in memory.
-
 
 size_t readfilechunks(char *mb, int chunksize, FILE *fp) {
 	size_t a;
