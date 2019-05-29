@@ -11,7 +11,6 @@
 
 #include <stdint.h>
 
-const uint32_t H0[8];
 const uint32_t K[64];
 
 #endif
