@@ -60,12 +60,11 @@ void hashRound(uint32_t *wordbuffer, uint32_t *H) {
 
 }
 
-uint32_t *hashMessage(FILE *fp) {
+uint32_t *hashMessage(FILE *fp, uint32_t *H) {
 	unsigned char bytebuffer[BLOCKSIZE_BYTE];
 	uint32_t wordbuffer[BLOCKNUM]; 
 
-	uint32_t *H;
-	H = malloc(32);
+	//H = malloc(32);
 	memcpy(H, H0, 32);
 
 	uint64_t messagelength=0;
@@ -75,9 +74,6 @@ uint32_t *hashMessage(FILE *fp) {
 	while ((readval=fread(bytebuffer,1,
 		BLOCKSIZE_BYTE,fp))==BLOCKSIZE_BYTE) {
 		messagelength += readval;
-
-
-		// Pad Message chunk if necessary
 
 
 		// Convert to uint32 words
@@ -101,13 +97,15 @@ uint32_t *hashMessage(FILE *fp) {
 int main(int argc, char const *argv[])
 {
 	unsigned int filesize;
-
+	FILE *fp;
 
 	// Open file
-	FILE *fp = fopen(argv[1], "r");
+	if ((fp = fopen(argv[1], "r")) == NULL) {
+		printf("Error: Could not open file %s\n", argv[1]);
+	}
 
-	uint32_t *digest;
-	digest = hashMessage(fp);
+	uint32_t digest[8];
+	hashMessage(fp, digest);
 
 
 	printf("%08x%08x%08x%08x%08x%08x%08x%08x  %s\n", 
@@ -117,7 +115,6 @@ int main(int argc, char const *argv[])
 
 	// Clean up
 	fclose(fp);
-	free(digest);
 
 	return 0;
 };
