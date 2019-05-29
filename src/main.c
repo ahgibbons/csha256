@@ -2,26 +2,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <inttypes.h>
 #include "sha256Funcs.h"
 #include "sha256const.h"
 
 
 
-size_t readfilechunks(char *mb, int chunksize, FILE *fp) {
-	size_t a;
-	int i;
-	size_t len=0;
 
-	do {
-		a = fread(mb, 1, chunksize, fp);
-		for (i=0;i<a;i++) {
-			printf("%c", mb[i]);
-		}
-		printf("\n");
-		len += a;
-	} while (a != 0);
-	return len;
-};
 
 void hashRound(uint32_t *wordbuffer, uint32_t *H) {
 
@@ -81,7 +68,7 @@ uint32_t *hashMessage(FILE *fp) {
 	H = malloc(32);
 	memcpy(H, H0, 32);
 
-	unsigned int messagelength=0;
+	uint64_t messagelength=0;
 	size_t readval;
 
 
@@ -91,10 +78,7 @@ uint32_t *hashMessage(FILE *fp) {
 
 
 		// Pad Message chunk if necessary
-		if (readval < BLOCKSIZE_BYTE) {
-			padmessage(bytebuffer, readval, 
-						messagelength);
-		}
+
 
 		// Convert to uint32 words
 		bytesToWords(wordbuffer, bytebuffer);
@@ -104,6 +88,7 @@ uint32_t *hashMessage(FILE *fp) {
 
 	}
 
+		
 	messagelength += readval;
 	padmessage(bytebuffer, readval, messagelength);
 	bytesToWords(wordbuffer, bytebuffer);

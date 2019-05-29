@@ -18,7 +18,7 @@ uint32_t sigma0(uint32_t x);
 uint32_t sigma1(uint32_t x);
 void bytesToWords(uint32_t *wordbuffer, unsigned char *bytebuffer);
 void padmessage(unsigned char *mbuf, unsigned int chsize,
-							unsigned int totallength);
-unsigned int mod(unsigned int a, unsigned int d);
+							uint64_t totallength);
+unsigned int mod(uint64_t a, unsigned int d);
 
 #endif

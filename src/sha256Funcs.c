@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <inttypes.h>
 
 #include "sha256Funcs.h"
 #include "sha256const.h"
@@ -47,7 +48,7 @@ uint32_t sigma1(uint32_t x) {
 	return (rotr(x,17) ^ rotr(x,19) ^ (x >> 10));
 };
 
-unsigned int mod(unsigned int a, unsigned int d) {
+unsigned int mod(uint64_t a, unsigned int d) {
 	return a % d;
 };
 
@@ -63,8 +64,8 @@ void bytesToWords(uint32_t *wordbuffer, unsigned char *bytebuffer) {
 
 void padmessage(unsigned char *mbuf,
 						  unsigned int chsize,
-						  unsigned int totallength) {
-	unsigned long bitsize = (totallength * 8); // bytes to bits
+						  uint64_t totallength) {
+	uint64_t bitsize = (totallength * 8); // bytes to bits
 	unsigned int nzerobits = mod(ZEROPADNUM - bitsize -1, BLOCKSIZE_BIT);
 	unsigned int nzerobytes = (nzerobits-7) / 8;
 
@@ -85,7 +86,7 @@ void padmessage(unsigned char *mbuf,
 
 
 	// Add 8 byte bit length of message
-	int rshifter;
+	unsigned long rshifter;
 	for (rshifter=0;rshifter<8;rshifter++) {
 		unsigned char a = (bitsize >> (8*rshifter)) & 0xff;
 		mbuf[BLOCKSIZE_BYTE-1-rshifter] = a;

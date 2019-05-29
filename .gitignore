@@ -1,3 +1,4 @@
+dcsha256
 csha256
 main
 sha256Funcs
@@ -7,3 +8,4 @@ C MultiBuild.sublime-build
 csha256.sublime-project
 *.pdf
 build/*
+testsuite/
